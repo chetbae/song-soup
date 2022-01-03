@@ -1,75 +1,128 @@
-const { v4: uuid } = require('uuid');
-const path = require("path");
+const dummy_room_with_guests = {
+  room_id: "dummy-id-with-guests",
+  playlist_id: "123456789",
+  users: {
+    host: "host0",
+    guests: ["guest1", "guest2", "guest3"]
+  },
+  empty: false
+};
 
-// Require the fastify framework and instantiate it
-const fastify = require("fastify")({
-  // set this to true for detailed logging:
-  logger: false
+const dummy_room_no_guests = {
+  room_id: "dummy-id-no-guests",
+  playlist_id: "abcdefghi",
+  users: {
+    host: "host",
+    guests: []
+  },
+  empty: false
+};
+
+const empty_room = {
+  room_id: undefined,
+  playlist_id: undefined,
+  users: {
+    host: undefined,
+    guests: []
+  },
+  empty: true
+};
+
+var qs = require("qs");
+var mongodb = require("mongodb");
+var { v4: uuid } = require("uuid");
+
+// set up express
+var express = require("express");
+var app = express();
+
+app.set("view engine", "ejs");
+app.use(express.static("public"));
+
+app.get("/", (request, response) => {
+  response.sendFile(__dirname + "/src/pages/landing.html");
 });
 
-// Setup our static files
-fastify.register(require("fastify-static"), {
-  root: path.join(__dirname, "public"),
-  prefix: "/" // optional: default '/'
+// Spotify node wrapper
+var spotify = require("spotify-web-api-node");
+var redirect_uri = `https://${process.env.PROJECT_DOMAIN}.glitch.me/callback`;
+var scopes = [
+  "user-read-private",
+  "user-read-email",
+  "user-top-read",
+  "playlist-modify-private",
+  "playlist-read-collaborative",
+  "playlist-read-private",
+  "playlist-modify-public"
+];
+var show_dialog = true;
+
+var spotify_api = new spotify({
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  redirectUri: redirect_uri
 });
 
-// fastify-formbody lets us parse incoming forms
-fastify.register(require("fastify-formbody"));
-
-// point-of-view is a templating manager for fastify
-fastify.register(require("point-of-view"), {
-  engine: {
-    handlebars: require("handlebars")
-  }
+app.get("/authorize", (request, response) => {
+  var { room_id } = request.params;
+  var authorize_url = spotify_api.createAuthorizeURL(scopes, null, show_dialog);
+  console.log("authorize url: " + authorize_url);
+  response.redirect(authorize_url);
 });
 
-// Our main GET home page route, pulls from src/pages/index.hbs
-fastify.get("/", function(request, reply) {
-  // params is an object we'll pass to our handlebars template
-  let params = {
-    greeting: "Hello Soup"
-  };
-  // request.query.paramName <-- a querystring example
-  reply.view("/src/pages/landing.hbs", params);
+app.get("/callback", (request, response) => {
+  var authorization_code = request.query.code;
+
+  spotify_api.authorizationCodeGrant(authorization_code).then(
+    data => {
+      console.log("The token expires in " + data.body["expires_in"]);
+      console.log(
+        "The access token is " +
+          data.body["access_token"].substring(0, 10) +
+          "..."
+      );
+      console.log(
+        "The refresh token is " +
+          data.body["refresh_token"].substring(0, 10) +
+          "..."
+      );
+
+      spotify_api.setAccessToken(data.body["access_token"]);
+      spotify_api.setRefreshToken(data.body["refresh_token"]);
+      response.redirect("/recents");
+    },
+    error => {
+      console.log(error.message);
+    }
+  );
 });
 
+app.get("/recents", (request, response) => {
+  var data = spotify_api
+    .getMyRecentlyPlayedTracks({
+      limit: 50
+    })
+    .then(
+      data => {
+        var track_names = data.body.items.map(el => el.track.name);
+        console.log(track_names);
 
-// A POST route to handle form submissions
-fastify.post("/", function(request, reply) {
-  let params = {
-    greeting: "Hello Form!"
-  };
-  // request.body.paramName <-- a form post example
-  reply.redirect(`/${uuid()}`);
+        response.render("recents", {
+          track_names: track_names
+        });
+      },
+      error => {
+        console.log(error.message);
+      }
+    );
 });
 
-fastify.get("/:id", function(request, reply) {
-  const { id } = request.params;
-  reply.view("/src/pages/room.hbs", {roomID: id});
+app.get("/:room_id", (request, response) => {
+  var { room_id } = request.params;
 });
 
+///////////////////////////////////////
 
-// Run the server and report out to the logs
-fastify.listen(process.env.PORT, function(err, address) {
-  if (err) {
-    fastify.log.error(err);
-    process.exit(1);
-  }
-  console.log(`Your app is listening on ${address}`);
-  fastify.log.info(`server listening on ${address}`);
+var listener = app.listen(process.env.PORT, () => {
+  console.log("Listening on port " + listener.address().port);
 });
-
-/*
-// A POST route to handle form submissions
-fastify.post("/", function(request, reply) {
-  let params = {
-    greeting: "Hello Form!"
-  };
-  // request.body.paramName <-- a form post example
-  reply.view("/src/pages/landing.hbs", params);
-});
-
-fastify.get("/:id", function(request, reply) {
-  reply.view("/src/pages/room.hbs", request.params);
-});
-*/

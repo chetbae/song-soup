@@ -36,7 +36,7 @@ h1 {
   margin: 0;
 }
 
-h1 a {
+a {
   text-decoration: none;
   color: inherit;
 }
@@ -62,9 +62,18 @@ button:hover {
 img,
 video {
   height: auto;
-  max-width: 100%;
+  max-width: 50%;
 }
 
 .red {
   color: red;
+}
+
+.waiting {
+  text-align: right;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  display: block;
+  padding-top: 1rem;
 }
