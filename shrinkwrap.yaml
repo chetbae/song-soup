@@ -1,26 +1,9 @@
 dependencies:
   ejs: 3.1.6
   express: 4.17.2
-  mongodb: 4.2.2
   qs: 6.10.2
   spotify-web-api-node: 5.0.2
-  uuid: 8.3.2
 packages:
-  /@types/node/17.0.5:
-    dev: false
-    resolution:
-      integrity: sha512-w3mrvNXLeDYV1GKTZorGJQivK6XLCoGwpnyJFbJVK/aTBQUxOCaa/GlFAAN3OTDFcb7h5tiFG+YXCO2By+riZw==
-  /@types/webidl-conversions/6.1.1:
-    dev: false
-    resolution:
-      integrity: sha512-XAahCdThVuCFDQLT7R7Pk/vqeObFNL3YqRyFZg+AqAP/W1/w3xHaIxuW7WszQqTbIBOPRcItYJIou3i/mppu3Q==
-  /@types/whatwg-url/8.2.1:
-    dependencies:
-      '@types/node': 17.0.5
-      '@types/webidl-conversions': 6.1.1
-    dev: false
-    resolution:
-      integrity: sha512-2YubE1sjj5ifxievI5Ge1sckb9k/Er66HyR2c+3+I6VDUUg1TLPdYYTEbQ+DjRkS4nTxMJhgWfSfMRD2sl2EYQ==
   /accepts/1.3.7:
     dependencies:
       mime-types: 2.1.34
@@ -54,10 +37,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
-  /base64-js/1.5.1:
-    dev: false
-    resolution:
-      integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
   /body-parser/1.19.1:
     dependencies:
       bytes: 3.1.1
@@ -82,21 +61,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==
-  /bson/4.6.0:
-    dependencies:
-      buffer: 5.7.1
-    dev: false
-    engines:
-      node: '>=6.9.0'
-    resolution:
-      integrity: sha512-8jw1NU1hglS+Da1jDOUYuNcBJ4cNHCFIqzlwoFNnsTOg2R/ox0aTYcTiBN4dzRa9q7Cvy6XErh3L8ReTEb9AQQ==
-  /buffer/5.7.1:
-    dependencies:
-      base64-js: 1.5.1
-      ieee754: 1.2.1
-    dev: false
-    resolution:
-      integrity: sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ==
   /bytes/3.1.1:
     dev: false
     engines:
@@ -194,12 +158,6 @@ packages:
       node: '>=0.4.0'
     resolution:
       integrity: sha1-3zrhmayt+31ECqrgsp4icrJOxhk=
-  /denque/2.0.1:
-    dev: false
-    engines:
-      node: '>=0.10'
-    resolution:
-      integrity: sha512-tfiWc6BQLXNLpNiR5iGd0Ocu3P3VpxfzFiqubLgMfhfOw9WyvgJBd46CClNn9k3qfbjvT//0cf7AlYRX/OslMQ==
   /depd/1.1.2:
     dev: false
     engines:
@@ -385,10 +343,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==
-  /ieee754/1.2.1:
-    dev: false
-    resolution:
-      integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==
   /inherits/2.0.4:
     dev: false
     resolution:
@@ -423,11 +377,6 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
-  /memory-pager/1.5.0:
-    dev: false
-    optional: true
-    resolution:
-      integrity: sha512-ZS4Bp4r/Zoeq6+NLJpP+0Zzm0pR8whtGPf1XExKLJBAczGMnSi3It14OiNCStjQjM6NU1okjQGSxgEZN8eBYKg==
   /merge-descriptors/1.0.1:
     dev: false
     resolution:
@@ -472,25 +421,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-yJHVQEhyqPLUTgt9B83PXu6W3rx4MvvHvSUvToogpwoGDOUQ+yDrR0HRot+yOCdCO7u4hX3pWft6kWBBcqh0UA==
-  /mongodb-connection-string-url/2.4.1:
-    dependencies:
-      '@types/whatwg-url': 8.2.1
-      whatwg-url: 11.0.0
-    dev: false
-    resolution:
-      integrity: sha512-d5Kd2bVsKcSA7YI/yo57fSTtMwRQdFkvc5IZwod1RRxJtECeWPPSo7zqcUGJELifRA//Igs4spVtYAmvFCatug==
-  /mongodb/4.2.2:
-    dependencies:
-      bson: 4.6.0
-      denque: 2.0.1
-      mongodb-connection-string-url: 2.4.1
-    dev: false
-    engines:
-      node: '>=12.9.0'
-    optionalDependencies:
-      saslprep: 1.0.3
-    resolution:
-      integrity: sha512-zt8rCTnTKyMQppyt63qMnrLM5dbADgUk18ORPF1XbtHLIYCyc9hattaYHi0pqMvNxDpgGgUofSVzS+UQErgTug==
   /ms/2.0.0:
     dev: false
     resolution:
@@ -540,12 +470,6 @@ packages:
       node: '>= 0.10'
     resolution:
       integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==
-  /punycode/2.1.1:
-    dev: false
-    engines:
-      node: '>=6'
-    resolution:
-      integrity: sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
   /qs/6.10.2:
     dependencies:
       side-channel: 1.0.4
@@ -595,15 +519,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
-  /saslprep/1.0.3:
-    dependencies:
-      sparse-bitfield: 3.0.3
-    dev: false
-    engines:
-      node: '>=6'
-    optional: true
-    resolution:
-      integrity: sha512-/MY/PEMbk2SuY5sScONwhUDsV2p77Znkb/q3nSVstq/yQzYJOH/Azh29p9oJLsl3LnQwSvZDKagDGBsBwSooag==
   /semver/7.3.5:
     dependencies:
       lru-cache: 6.0.0
@@ -656,13 +571,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==
-  /sparse-bitfield/3.0.3:
-    dependencies:
-      memory-pager: 1.5.0
-    dev: false
-    optional: true
-    resolution:
-      integrity: sha1-/0rm5oZWBWuks+eSqzM004JzyhE=
   /spotify-web-api-node/5.0.2:
     dependencies:
       superagent: 6.1.0
@@ -713,14 +621,6 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==
-  /tr46/3.0.0:
-    dependencies:
-      punycode: 2.1.1
-    dev: false
-    engines:
-      node: '>=12'
-    resolution:
-      integrity: sha512-l7FvfAHlcmulp8kr+flpQZmVwtu7nfRV7NZujtN0OqES8EL4O4e0qqzL0DC5gAvx/ZC/9lk6rhcUwYvkBnBnYA==
   /type-is/1.6.18:
     dependencies:
       media-typer: 0.3.0
@@ -746,32 +646,12 @@ packages:
       node: '>= 0.4.0'
     resolution:
       integrity: sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
-  /uuid/8.3.2:
-    dev: false
-    hasBin: true
-    resolution:
-      integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
   /vary/1.1.2:
     dev: false
     engines:
       node: '>= 0.8'
     resolution:
       integrity: sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
-  /webidl-conversions/7.0.0:
-    dev: false
-    engines:
-      node: '>=12'
-    resolution:
-      integrity: sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g==
-  /whatwg-url/11.0.0:
-    dependencies:
-      tr46: 3.0.0
-      webidl-conversions: 7.0.0
-    dev: false
-    engines:
-      node: '>=12'
-    resolution:
-      integrity: sha512-RKT8HExMpoYx4igMiVMY83lN6UeITKJlBQ+vR/8ZJ8OCdSiN3RwCq+9gH0+Xzj0+5IrM6i4j/6LuvzbZIQgEcQ==
   /yallist/4.0.0:
     dev: false
     resolution:
@@ -782,7 +662,5 @@ shrinkwrapVersion: 3
 specifiers:
   ejs: ^3.1.6
   express: ^4.17.2
-  mongodb: ^4.2.2
   qs: ^6.10.2
   spotify-web-api-node: ^5.0.2
-  uuid: ^8.3.2
